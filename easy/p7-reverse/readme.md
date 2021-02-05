@@ -36,3 +36,26 @@
 3. 对列表值乘以对应为的进位，求出反序结果
 4. 判断是否大于2^32,如果大于2^32,则将结果存为0
 5. 乘上前边的符号位
+
+### 官网方案
+
+1. 类似进栈出栈逻辑，假设原始是x,反转后数字是rev
+2. 通过x%10取个位数字pop，x/=10
+3. 预判一下第四步是否会越界，如果越界直接返回0，否则执行第四步
+4. rev = rev*10+pop
+
+```C++
+int reverseGW(int x) {
+    int rev = 0;
+    while (x != 0) {
+        int pop = x % 10;
+        x /= 10;
+        if (rev > INT_MAX / 10 || (rev == INT_MAX / 10 && pop > 7)) //0x7F FF FF FF
+            return 0;
+        if (rev < INT_MIN / 10 || (rev == INT_MIN / 10 && pop < -8)) //0x8F FF FF FF
+            return 0;
+        rev = rev * 10 + pop;
+    }
+    return rev;
+}
+```

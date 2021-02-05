@@ -6,6 +6,20 @@ using namespace std;
 
 class Solution {
 public:
+    int reverseGW(int x) {
+        int rev = 0;
+        while (x != 0) {
+            int pop = x % 10;
+            x /= 10;
+            if (rev > INT_MAX / 10 || (rev == INT_MAX / 10 && pop > 7)) //0x7F FF FF FF
+                return 0;
+            if (rev < INT_MIN / 10 || (rev == INT_MIN / 10 && pop < -8)) //0x8F FF FF FF
+                return 0;
+            rev = rev * 10 + pop;
+        }
+        return rev;
+    }
+
     int reverse(int ix) {
         int sign = 1;
         long x = ix;

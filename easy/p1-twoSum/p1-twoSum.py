@@ -22,5 +22,13 @@ class Solution:
                     return [i,j+i+1]
         return listIndex
 
+    def twoSum3(self,nums,target):
+        # 遍历nums下标i及值v，如果i后边的值与当前值v的和是target，说明满足条件，将i添加到lst里
+        lst = [i for i,v in enumerate(nums) if target-v in nums[i+1:]]
+        if len(lst) == 1:#
+            lst.append(lst[0]+1+nums[lst[0]+1:].index(target-nums[lst[0]]))
+        return lst
 test = Solution()
-print(test.twoSum([3,3],6))
+print(test.twoSum3([2,7,11,5],9))
+print(test.twoSum3([3,3],6))
+print(test.twoSum3([3,2,4],6))
