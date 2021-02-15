@@ -30,9 +30,11 @@ class Solution:
         else:
             return False
 
-print(Solution().isValid("()"))
-print(Solution().isValid("()[]{}"))
-print(Solution().isValid("(]"))
-print(Solution().isValid("([)]"))
-print(Solution().isValid("{[]}"))
-print(Solution().isValid("(])"))
+
+if __name__ == '__main__':
+    print(Solution().isValid("()"))
+    print(Solution().isValid("()[]{}"))
+    print(Solution().isValid("(]"))
+    print(Solution().isValid("([)]"))
+    print(Solution().isValid("{[]}"))
+    print(Solution().isValid("(])"))
